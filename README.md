@@ -8,6 +8,8 @@ Invoke the script with 5 tokens and the profile is outputted to stdout.
   3. Full path to the client cert.
   4. Full path to the client private key.
   5. Full path to the server TLS shared secret key.
+  6. Optionally define a port number (defaults to 1194 if left blank).
+  7. Optionally define a protocol (defaults to udp if left blank).
 
 ### Example
 ```

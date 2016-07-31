@@ -1,27 +1,39 @@
 #!/bin/sh
 
-##
-## Usage: ovpngen SERVER CA_CERT CLIENT_CERT CLIENT_KEY SHARED_SECRET > client.ovpn
-##
-## Example invocation (note it must be run as root since key and cert files are protected
-## ovpngen titty.nipples.org /etc/easy-rsa/pki/ca.crt /etc/easy-rsa/pki/issued/client.crt /etc/easy-rsa/pki/private/client.key /etc/openvpn/ta.key > iphone.ovpn
-##
 ## Tested and works with OpenVPN Connect 1.0.7 build 199 (iOS 64-bit) on iOS 9.3.3
 ##
 ## Majority of the credit goes to the script's original author, trovao
 ## Link to original script: https://gist.github.com/trovao/18e428b5a758df24455b
-##
+
+if [[ -z ${1} ]]; then
+	echo "Usage: $0 SERVER CA_CERT CLIENT_CERT CLIENT_KEY SHARED_SECRET PORT PROTO"
+	echo
+	echo "The first 5 tokens are required while the last are optional"
+	echo " SERVER = Fully qualified domain name"
+	echo " CA_CERT = Full path to the CA cert"
+	echo " CLIENT_CERT = Full path to the client cert"
+	echo " CLIENT_KEY = Full path to the client private key"
+	echo " SHARED_SECRET = Full path to the server TLS shared secret key"
+	echo " PORT = Port number (defaults to 1194 if left blank)"
+	echo " PROTO = Protocol (defaults to udp if left blank)"
+	echo
+	echo "For example:"
+	echo "ovpngen titty.nipples.org /etc/easy-rsa/pki/ca.crt /etc/easy-rsa/pki/issued/client.crt /etc/easy-rsa/pki/private/client.key /etc/openvpn/ta.key > iphone.ovpn"
+	exit 0
+fi
 
 server=${1?"The server address is required"}
 cacert=${2?"The path to the ca certificate file is required"}
 client_cert=${3?"The path to the client certificate file is required"}
 client_key=${4?"The path to the client private key file is required"}
 tls_key=${5?"The path to the TLS shared secret file is required"}
+[[ -z "$6" ]] && port=1194 || port="$6"
+[[ -z "$7" ]] && proto='udp' || proto="$7"
 
 cat << EOF
 client
 dev tun
-remote ${server} 1194 udp
+remote ${server} ${port} ${proto}
 resolv-retry infinite
 nobind
 persist-key
