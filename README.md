@@ -1,5 +1,5 @@
 ## Overview
-A simple shell script that creates OpenVPN compatible tunnel profiles in the unified file format. Tested on iOS version 1.0.7 build 199 of OpenVPN Connect and likely works with the Android app as well. 
+A simple shell script that creates OpenVPN compatible tunnel profiles in the unified file format. Tested on iOS version 1.0.7 build 199 of OpenVPN Connect and likely works with the Android app as well as the official Linux client.
 
 ## Usage
 Invoke the script with 5 tokens and the profile is outputted to stdout.
@@ -13,10 +13,10 @@ Invoke the script with 5 tokens and the profile is outputted to stdout.
 
 ### Example
 ```
-sudo ./ovpngen titty.nipples.org /etc/easy-rsa/pki/ca.crt /etc/easy-rsa/pki/issued/client.crt /etc/easy-rsa/pki/private/client.key /etc/openvpn/ta.key > iphone.ovpn
+sudo ./ovpngen titty.nipples.org /etc/easy-rsa/pki/ca.crt /etc/easy-rsa/pki/issued/client.crt /etc/easy-rsa/pki/private/client.key /etc/openvpn/ta.key > myprofile.ovpn
 ```
 
-The resulting iphone.ovpn can be edited if desired.
+The resulting myprofile.ovpn can be edited if desired.
 
 ### Credit
 Majority of the credit goes to the script's original author, [trovao](https://github.com/trovao).  His version can be found [here](https://gist.github.com/trovao/18e428b5a758df24455b).

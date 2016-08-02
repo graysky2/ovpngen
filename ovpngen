@@ -39,6 +39,10 @@ nobind
 persist-key
 persist-tun
 verb 3
+# optionally uncomment and change to exactly match the values specified
+# in /etc/openvpn/server.conf
+#cipher AES-256-CBC
+#auth SHA512
 comp-lzo
 remote-cert-tls server
 key-direction 1
