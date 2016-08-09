@@ -18,7 +18,7 @@ if [[ -z ${1} ]]; then
 	echo " PROTO = Protocol (defaults to udp if left blank)"
 	echo
 	echo "For example:"
-	echo "ovpngen titty.nipples.org /etc/easy-rsa/pki/ca.crt /etc/easy-rsa/pki/issued/client.crt /etc/easy-rsa/pki/private/client.key /etc/openvpn/ta.key > iphone.ovpn"
+	echo "ovpngen titty.nipples.org /etc/openvpn/ca.crt /etc/easy-rsa/pki/signed/client.crt /etc/easy-rsa/pki/private/client.key /etc/openvpn/ta.key > iphone.ovpn"
 	exit 0
 fi
 
