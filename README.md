@@ -13,7 +13,7 @@ Invoke the script with 5 tokens and the profile is outputted to stdout.
 
 ### Example
 ```
-sudo ./ovpngen titty.nipples.org /etc/easy-rsa/pki/ca.crt /etc/easy-rsa/pki/issued/client.crt /etc/easy-rsa/pki/private/client.key /etc/openvpn/ta.key > myprofile.ovpn
+sudo ./ovpngen titty.nipples.org /etc/openvpn/ca.crt /etc/easy-rsa/pki/signed/client.crt /etc/easy-rsa/pki/private/client.key /etc/openvpn/ta.key > iphone.ovpn
 ```
 
 The resulting myprofile.ovpn can be edited if desired.
