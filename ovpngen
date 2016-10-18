@@ -1,11 +1,11 @@
-#!/bin/sh
+#!/bin/bash
 
 ## Tested and works with OpenVPN Connect 1.0.7 build 199 (iOS 64-bit) on iOS 9.3.3
 ##
 ## Majority of the credit goes to the script's original author, trovao
 ## Link to original script: https://gist.github.com/trovao/18e428b5a758df24455b
 
-if [[ -z ${1} ]]; then
+usage() {
 	echo "Usage: $0 SERVER CA_CERT CLIENT_CERT CLIENT_KEY SHARED_SECRET PORT PROTO"
 	echo
 	echo "The first 5 tokens are required while the last are optional"
@@ -20,13 +20,29 @@ if [[ -z ${1} ]]; then
 	echo "For example:"
 	echo "ovpngen titty.nipples.org /etc/openvpn/ca.crt /etc/easy-rsa/pki/signed/client.crt /etc/easy-rsa/pki/private/client.key /etc/openvpn/ta.key > iphone.ovpn"
 	exit 0
-fi
+}
+
+[[ -z "$1" ]] && usage
 
 server=${1?"The server address is required"}
 cacert=${2?"The path to the ca certificate file is required"}
 client_cert=${3?"The path to the client certificate file is required"}
 client_key=${4?"The path to the client private key file is required"}
 tls_key=${5?"The path to the TLS shared secret file is required"}
+
+# test for readable files
+for i in "$cacert" "$client_cert" "$client_key" "$tls_key"; do
+	[[ -f "$i" ]] || {
+	echo " I cannot find $i on the filesystem."
+	echo " This could be due to permissions or that you did not define the full path correctly."
+	echo " Check the path and try again."
+	exit 1
+}
+	[[ -r "$i" ]] || {
+	echo " I cannot read $i. Try invoking $0 as root."
+	exit 1
+}
+done
 [[ -z "$6" ]] && port=1194 || port="$6"
 [[ -z "$7" ]] && proto='udp' || proto="$7"
 
@@ -48,22 +64,22 @@ remote-cert-tls server
 key-direction 1
 <ca>
 EOF
-cat ${cacert}
+cat "${cacert}"
 cat << EOF
 </ca>
 <cert>
 EOF
-cat ${client_cert}
+cat "${client_cert}"
 cat << EOF
 </cert>
 <key>
 EOF
-cat ${client_key}
+cat "${client_key}"
 cat << EOF
 </key>
 <tls-auth>
 EOF
-cat ${tls_key}
+cat "${tls_key}"
 cat << EOF
 </tls-auth>
 EOF
