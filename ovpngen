@@ -1,25 +1,31 @@
 #!/bin/bash
 
-## Tested and works with OpenVPN Connect 1.0.7 build 199 (iOS 64-bit) on iOS 9.3.3
+## Tested and works with OpenVPN Connect 1.0.7 build 199 (iOS 64-bit) on iOS 10.2
 ##
 ## Majority of the credit goes to the script's original author, trovao
 ## Link to original script: https://gist.github.com/trovao/18e428b5a758df24455b
 
 usage() {
-	echo "Usage: $0 SERVER CA_CERT CLIENT_CERT CLIENT_KEY SHARED_SECRET PORT PROTO"
-	echo
-	echo "The first 5 tokens are required while the last are optional"
-	echo " SERVER = Fully qualified domain name"
-	echo " CA_CERT = Full path to the CA cert"
-	echo " CLIENT_CERT = Full path to the client cert"
-	echo " CLIENT_KEY = Full path to the client private key"
-	echo " SHARED_SECRET = Full path to the server TLS shared secret key"
-	echo " PORT = Port number (defaults to 1194 if left blank)"
-	echo " PROTO = Protocol (defaults to udp if left blank)"
-	echo
-	echo "For example:"
-	echo "ovpngen titty.nipples.org /etc/openvpn/ca.crt /etc/easy-rsa/pki/signed/client.crt /etc/easy-rsa/pki/private/client.key /etc/openvpn/ta.key > iphone.ovpn"
-	exit 0
+  echo "Usage: $0 SERVER CA_CERT CLIENT_CERT CLIENT_KEY SHARED_SECRET PORT PROTO"
+  echo
+  cat << EOF
+  The first 5 tokens are required while the last are optional
+  SERVER = Fully qualified domain name
+  CA_CERT = Full path to the CA cert
+  CLIENT_CERT = Full path to the client cert
+  CLIENT_KEY = Full path to the client private key
+  SHARED_SECRET = Full path to the server TLS shared secret key
+  PORT = Port number (defaults to 1194 if left blank)
+  PROTO = Protocol (defaults to udp if left blank)
+EOF
+  echo
+  echo 'For example:'
+  echo ' ovpngen titty.nipples.org \'
+  echo '   /etc/openvpn/server/ca.crt \'
+  echo '   /etc/easy-rsa/pki/signed/client.crt \'
+  echo '   /etc/easy-rsa/pki/private/client.key \'
+  echo '   /etc/openvpn/server/ta.key > iphone.ovpn'
+  exit 0
 }
 
 [[ -z "$1" ]] && usage
@@ -32,15 +38,15 @@ tls_key=${5?"The path to the TLS shared secret file is required"}
 
 # test for readable files
 for i in "$cacert" "$client_cert" "$client_key" "$tls_key"; do
-	[[ -f "$i" ]] || {
-	echo " I cannot find $i on the filesystem."
-	echo " This could be due to permissions or that you did not define the full path correctly."
-	echo " Check the path and try again."
-	exit 1
+  [[ -f "$i" ]] || {
+  echo " I cannot find $i on the filesystem."
+  echo " This could be due to permissions or that you did not define the full path correctly."
+  echo " Check the path and try again."
+  exit 1
 }
-	[[ -r "$i" ]] || {
-	echo " I cannot read $i. Try invoking $0 as root."
-	exit 1
+[[ -r "$i" ]] || {
+echo " I cannot read $i. Try invoking $0 as root."
+exit 1
 }
 done
 [[ -z "$6" ]] && port=1194 || port="$6"
@@ -83,3 +89,5 @@ cat "${tls_key}"
 cat << EOF
 </tls-auth>
 EOF
+
+# vim:set ts=2 sw=2 et:
