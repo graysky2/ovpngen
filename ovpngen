@@ -20,11 +20,13 @@ usage() {
 EOF
   echo
   echo 'For example:'
-  echo ' ovpngen titty.nipples.org \'
+  echo
+  echo 'CLIENT=jason'
+  echo "$0 nipple.titty.org \\"
   echo '   /etc/openvpn/server/ca.crt \'
-  echo '   /etc/easy-rsa/pki/signed/client.crt \'
-  echo '   /etc/easy-rsa/pki/private/client.key \'
-  echo '   /etc/openvpn/server/ta.key > iphone.ovpn'
+  echo '   /etc/easy-rsa/pki/signed/$CLIENT.crt \'
+  echo '   /etc/easy-rsa/pki/private/$CLIENT.key \'
+  echo '   /etc/openvpn/server/ta.key > $CLIENT.ovpn'
   exit 0
 }
 
@@ -62,7 +64,7 @@ persist-key
 persist-tun
 verb 3
 # optionally uncomment and change to exactly match the values specified
-# in /etc/openvpn/server.conf
+# in /etc/openvpn/server/server.conf
 #cipher AES-256-CBC
 #auth SHA512
 comp-lzo
