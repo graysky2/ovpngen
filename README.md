@@ -1,7 +1,8 @@
 ## Overview
 A simple shell script that creates OpenVPN compatible tunnel profiles in the unified file format. Tested on:
-* Linux OpenVPN version 2.4.3
+* Linux OpenVPN version 2.4.4
 * iOS version 1.1.1 build 212 of OpenVPN Connect
+* Android version 0.6.73 of OpenVPN for Android
 
 ## Usage
 Invoke the script with 5 tokens and the profile is outputted to stdout.
@@ -26,7 +27,7 @@ CLIENT=foo
 	 tcp > $CLIENT.ovpn
 ```
 
-The resulting foo.ovpn can be edited if desired.
+The resulting foo.ovpn can be edited if desired. Pay attention to the commented lines!
 
 ### Credit
 Majority of the credit goes to the script's original author, [trovao](https://github.com/trovao).  His version can be found [here](https://gist.github.com/trovao/18e428b5a758df24455b).
