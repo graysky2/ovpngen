@@ -1,7 +1,7 @@
 ## Overview
 A simple shell script that creates OpenVPN compatible tunnel profiles in the unified file format. Tested on:
 * Linux OpenVPN version 2.4.4
-* iOS version 1.1.1 build 212 of OpenVPN Connect
+* iOS version 1.2.5 build 1 of OpenVPN Connect
 * Android version 0.6.73 of OpenVPN for Android
 
 ## Usage

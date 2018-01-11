@@ -1,6 +1,6 @@
 #!/bin/bash
 
-## Tested and works with OpenVPN Connect 1.1.1 build 212 (iOS 64-bit) on iOS 11.2.1
+## Tested and works with OpenVPN Connect 1.2.5 build 1 (iOS 64-bit) on iOS 11.2.2
 ##
 ## Majority of the credit goes to the script's original author, trovao
 ## Link to original script: https://gist.github.com/trovao/18e428b5a758df24455b
