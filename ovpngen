@@ -73,6 +73,10 @@ verb 3
 ### the following line if you are not using the compression push option therein
 #comp-lzo
 ###
+###
+### scroll down and optionally change the <tls-auth> tag set to <tls-crypt>
+### to match how your server is configured since these options are mutually
+### exclusive
 remote-cert-tls server
 key-direction 1
 <ca>

@@ -27,7 +27,7 @@ CLIENT=foo
 	 tcp > $CLIENT.ovpn
 ```
 
-The resulting foo.ovpn can be edited if desired. Pay attention to the commented lines!
+The resulting foo.ovpn may need to be edited. Pay attention to the commented lines!
 
 ### Credit
 Majority of the credit goes to the script's original author, [trovao](https://github.com/trovao).  His version can be found [here](https://gist.github.com/trovao/18e428b5a758df24455b).
