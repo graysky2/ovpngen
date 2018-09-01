@@ -1,6 +1,6 @@
 #!/bin/bash
 
-## Tested and works with OpenVPN Connect 1.2.5 build 1 (iOS 64-bit) on iOS 11.2.2
+## Tested and works with OpenVPN Connect 1.2.9 build 0 (iOS 64-bit) on iOS 11.4.1
 ##
 ## Majority of the credit goes to the script's original author, trovao
 ## Link to original script: https://gist.github.com/trovao/18e428b5a758df24455b
@@ -22,7 +22,7 @@ EOF
   echo 'For example:'
   echo
   echo 'CLIENT=jason'
-  echo "$0 nipple.titty.org \\"
+  echo "$0 my.openvpn-server.com \\"
   echo '   /etc/openvpn/server/ca.crt \'
   echo '   /etc/easy-rsa/pki/signed/$CLIENT.crt \'
   echo '   /etc/easy-rsa/pki/private/$CLIENT.key \'
@@ -64,19 +64,15 @@ persist-key
 persist-tun
 verb 3
 ###
-### optionally uncomment and change both the cipher and auth lines to exactly
-### match the values specified in /etc/openvpn/server/server.conf
+### optionally uncomment and change both the cipher and auth lines to EXACTLY
+### match the values specified in ${server}
 #cipher AES-256-CBC
 #auth SHA512
 ###
-### depending on how /etc/openvpn/server/server.conf is configured, uncomment
-### the following line if you are not using the compression push option therein
-#comp-lzo
-###
-###
 ### scroll down and optionally change the <tls-auth> tag set to <tls-crypt>
-### to match how your server is configured since these options are mutually
-### exclusive
+### to match how the server is configured since these options are mutually
+### exclusive!
+###
 remote-cert-tls server
 key-direction 1
 <ca>
