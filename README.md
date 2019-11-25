@@ -14,7 +14,7 @@ Invoke the script with 5 tokens and the profile is outputted to stdout.
   6. Optionally define a port number (defaults to 1194 if left blank).
   7. Optionally define a protocol (defaults to udp if left blank).
 
-### Example (run as root) using all 7 augments to setup a profile working port 443 using TCP
+### Example (run as root) using all 7 arguments to setup a profile working port 443 using TCP
 ```
 CLIENT=foo
 
